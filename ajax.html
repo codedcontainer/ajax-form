@@ -1,0 +1,23 @@
+<script>
+jQuery('#webform-client-form-1').submit(function(e){
+    e.preventDefault(); 
+
+    var fname = jQuery('#edit-submitted-first-name').val();
+    var lname = jQuery('#edit-submitted-last-name').val(); 
+    var email = jQuery('#edit-submitted-email').val();
+    var reason = jQuery('#edit-submitted-reason-for-contacting option:selected').text();
+
+    jQuery.ajax({
+        async: 'false',
+        type: 'POST',
+        dataType: 'php',
+        url: '', //insert url of CtrFtrSubmit.php
+        data: {jfname: fname, jlname: lname, jemail: email, jreason: reason },
+        success: function(e)
+       {
+            console.log(e);
+        }
+});
+  
+});
+</script>
