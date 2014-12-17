@@ -6,7 +6,7 @@
 /* ============================================================ */
 
 $toEmail = ''; // email address to send the contact form to.
-$subject = 'Email from contact form'; // email subject line. 
+$subject = 'Email from contact form in footer of TGHR'; // email subject line. 
 
 $headers = "MIME-Version: 1.0" . "\r\n";
 $headers .= "Content-type:text/html;charset=UTF-8" . "\r\n";
@@ -39,8 +39,8 @@ $dbName = '';
 $dbTable = '';
 $orderby = false; 
 
-mysql_connect($dbHost, $dbUser, $dbPassword) OR echo (mysql_error());
-mysql_select_db($dbName) OR echo (mysql_error());
+mysql_connect($dbHost, $dbUser, $dbPassword) || die (mysql_error());
+mysql_select_db($dbName) || die( mysql_error() );
 
 /* creates a new table if it does not already exsist */ 
 $query1 = "CREATE TABLE IF NOT EXISTS ".$dbTable." (
@@ -51,14 +51,14 @@ $query1 = "CREATE TABLE IF NOT EXISTS ".$dbTable." (
 	`reason` text NOT NULL,
 	PRIMARY KEY (`id`)
 )ENGINE=MyISAM DEFAULT CHARSET=latin1 AUTO_INCREMENT=1"; 
-mysql_query($query1) OR echo (mysql_error());
+mysql_query($query1);
 
 /* addds the following data to the new or exsisting table */
 $query2 = "INSERT INTO ".$dbTable." VALUES('',";
 	$query2 .= $fname.",";
 	$query2 .= $lname.","; 
 	$query2 .= $email.","; 
-	$query2 .= $reason.",";
+	$query2 .= $reason; // the last query value does not need a comma! 
 	$query2 .= ")";
-mysql_query($query2) OR echo (mysql_error());
+mysql_query($query2) || die (mysql_error());
 ?>
